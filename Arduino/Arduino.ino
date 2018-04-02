@@ -3,7 +3,7 @@
           Arduino UNO with W5100 Ethernetshield or  W5100 Ethernet module, used as MQTT client
           It will connect over LAN to the MQTT broker 
           and gives the Temperature and Humidity, as well as the state of some switches
-          The topics have the format "home/br/sb" for southbound messages and  "home/nb" for northbound messages
+          The topics have the format "ZMS/L1/command" for southbound messages and  "ZMS/L1/" for northbound messages
           Southbound are messages going to the client, northbound are messages coming from the client
           As the available memory of a UNO  with Ethernetcard is limited, I have kept the topics short
           Also, the payloads  are kept short
@@ -48,8 +48,10 @@ PubSubClient mqttClient;
 long previousMillis;
 
 void setup() {
-  pinMode(4, INPUT_PULLUP);
-  pinMode(relayPin, OUTPUT);
+  pinMode(PCSPin,INPUT_PULLUP);
+pinMode(NG1Pin,INPUT_PULLUP);
+pinMode(WorkPin,INPUT_PULLUP);
+pinMode(relayPin, OUTPUT);
 
   // setup ethernet communication using DHCP
   if (Ethernet.begin(mac) == 0) {
